@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Convert</title>
+    <style>
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        select {
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        button {
+            width: 200px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            background-color: #ccc;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <form action="/convert" method="post">
+            {% csrf_token %}
+            <label for="amount">Amount</label>
+            <br>
+            <input type="text" name="amount" id="amount">
+            <br>
+            <label>From</label>
+            <br>
+            <select name="from" id="from">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+            </select>
+            <br>
+            <label>To</label>
+            <br>
+            <select name="to" id="to">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+            </select>
+            <br>
+            <button id="convert">Convert</button>
+            <br>
+        </form>
+        {% if rate %}
+        <label>Result</label>
+        <br>
+        <input type="text" name="result" id="result" readonly="readonly" value="{{converted_amount}}">
+        <br>
+        <label>Rate Used</label>
+        <br>
+        <input type="text" name="rate" id="rate" value="{{rate}}" readonly="readonly">
+        <br>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
